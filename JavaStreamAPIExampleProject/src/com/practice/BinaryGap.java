@@ -1,4 +1,4 @@
-package com.codility.practice;
+package com.practice;
 
 public class BinaryGap {
 
