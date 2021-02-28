@@ -22,6 +22,7 @@ public class OperatorsExample {
         //Transforming operators
         //map(),cast(),delay(),scan()
         observable2.map(Integer::doubleValue).subscribe(System.out::println);
+        System.out.println("Scan output :");
         observable2.scan((x,y)->x+y).subscribe(System.out::println);
 
         //Reducing Operators: Takes a series of emission and reduce them into single emission. Works with finite observables.
