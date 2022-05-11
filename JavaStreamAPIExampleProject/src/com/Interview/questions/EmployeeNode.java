@@ -17,7 +17,10 @@ public class EmployeeNode {
     }
 
     public Stream<EmployeeNode> flattened() {
-        return Stream.concat(Stream.of(this), subOrdinates.stream().flatMap(employeeNode -> employeeNode.getSubOrdinates() != null ? employeeNode.flattened() : Stream.of(employeeNode)));
+        return Stream.concat(Stream.of(this),
+                subOrdinates
+                        .stream()
+                        .flatMap(employeeNode -> employeeNode.getSubOrdinates() != null ? employeeNode.flattened() : Stream.of(employeeNode)));
     }
 
     public List<EmployeeNode> getAllSubOrdinates() {
