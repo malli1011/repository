@@ -32,8 +32,7 @@ public class ExpressionEvaluator {
                 }
             }
         }
-        while (!stack.isEmpty())
-            postFixList.add(stack.pop());
+        while (!stack.isEmpty()) postFixList.add(stack.pop());
 
         String postFixExpression = postFixList.stream().map(String::valueOf).collect(Collectors.joining());
         System.out.println(postFixExpression);
@@ -71,7 +70,30 @@ public class ExpressionEvaluator {
         }
     }
 
+    private boolean validateExpression(String expression) {
+        Stack<Character> stack = new Stack<>();
+        char[] chars = expression.toCharArray();
+        for (char c : chars) {
+            if (c == '(') {
+                stack.push(')');
+            } else if (c == ')') {
+                if (stack.isEmpty() || c != stack.peek()) {
+                    return false;
+
+                } else {
+                    stack.pop();
+                }
+            }
+        }
+        if (stack.isEmpty())
+            return true;
+        else
+            return false;
+
+    }
+
     public static void main(String[] args) {
         new ExpressionEvaluator().evaluateExpression("3 + 8 * ((4 + 3) * 2 + 1) - 6 / (2 + 1)");
+        System.out.println(new ExpressionEvaluator().validateExpression("(())(())"));
     }
 }
